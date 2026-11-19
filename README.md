@@ -1,58 +1,279 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Kaon Ta! Davao – Dimatulac's Food Guide
 
-## About Laravel
+**Student:** Mica Julianna P. Dimatulac  
+**Course:** CS Elective 2 – Full-Stack Development  
+**Project:** Prefinal Milestone Project  
+**Framework:** Laravel  
+**Database:** SQLite  
+**Frontend:** Blade, Tailwind CSS, and Vite
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Kaon Ta! Davao is a simple food guide for carinderias
+and eateries in Davao City.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Visitors can browse eateries by district, search by name
+or specialty, filter by features, and read reviews.
 
-## Learning Laravel
+The project also allows users to add, edit, and delete
+eateries, manage business permit information, and
+submit or delete reviews.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+No login is required. Reviewers are selected from
+the seeded users.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Features
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- Homepage with eatery, district, and review counts
+- Top three rated eateries
+- Eatery listing with search and filters
+- Six eateries per page with pagination
+- Eatery details, dishes, and permits
+- Feature badges and district links
+- Add, edit, and delete eateries
+- Submit and delete reviews
+- Closed eateries cannot receive reviews
+- Reviewer profile pages
+- Form Request validation
+- Responsive Tailwind CSS design
 
-## Agentic Development
+## Requirements
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- PHP and Composer
+- Node.js and npm
+- SQLite support for PHP
+- Git
+
+## Installation
+
+Clone the repository:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/micajuliannadimatulac/PrefinalProject-Dimatulac-KaonTaDavao.git
+cd PrefinalProject-Dimatulac-KaonTaDavao
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Install PHP dependencies:
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Create the environment file:
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Generate the application key:
 
-## Security Vulnerabilities
+```bash
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Create the SQLite database:
 
-## License
+```bash
+touch database/database.sqlite
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Check that `.env` contains:
+
+```env
+DB_CONNECTION=sqlite
+```
+
+Create tables and seed sample data:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Install frontend dependencies:
+
+```bash
+npm install
+```
+
+Build frontend assets:
+
+```bash
+npm run build
+```
+
+Start Laravel:
+
+```bash
+php artisan serve
+```
+
+Open the local address shown in the terminal.
+
+For development, you may use `npm run dev`.
+
+## Personalized Data
+
+### Districts
+
+1. Poblacion
+2. Talomo
+3. Agdao
+4. Buhangin
+5. Toril
+6. Bunawan
+
+### Eatery Features
+
+1. Suki ni Dimatulac
+2. Budget Meal
+3. Halal
+4. Open 24 Hours
+5. Aircon
+6. Free Wi-Fi
+
+### Seeded Users
+
+| Name | Email | Password |
+|---|---|---|
+| Mica Dimatulac | dimatulac@kaonta.test | kaonta2026 |
+| Tita Dimatulac | tita.dimatulac@kaonta.test | kaonta2026 |
+
+These passwords are stored as hashes.
+
+### Personalized Eatery
+
+| Field | Value |
+|---|---|
+| Name | Carinderia ni Dimatulac |
+| Slug | carinderia-ni-dimatulac |
+| District | Poblacion |
+| Address | San Pedro St., Poblacion, Davao City |
+| Price Range | budget |
+| Specialty | Tinolang Manok |
+| Status | Open |
+| Features | Suki ni Dimatulac, Budget Meal |
+| Permit | DVO-2026-0807 |
+| Permit Expiration | August 7, 2027 |
+
+### Dishes
+
+| Dish | Price | Bestseller |
+|---|---:|---|
+| Tinolang Manok | ₱85.00 | Yes |
+| Kinilaw na Tuna | ₱120.00 | No |
+| Durian Shake | ₱75.00 | No |
+
+### Required Review
+
+Reviewer: Tita Dimatulac
+
+Rating: 5 stars
+
+Review: Lami kaayo! Balik-balikan ni Tita Dimatulac.
+
+## Database Relationships
+
+| Models | Relationship | Why It Fits |
+|---|---|---|
+| District → Eatery | hasMany | One district can contain many eateries. |
+| Eatery → District | belongsTo | Each eatery belongs to one district. |
+| Eatery → Dish | hasMany | An eatery can offer several dishes. |
+| Dish → Eatery | belongsTo | Each dish belongs to one eatery. |
+| Eatery → Review | hasMany | An eatery can receive many reviews. |
+| Review → Eatery | belongsTo | Each review refers to one eatery. |
+| User → Review | hasMany | A reviewer can write several reviews. |
+| Review → User | belongsTo | Each review is written by one user. |
+| Eatery → Permit | hasOne | Each eatery has one business permit. |
+| Permit → Eatery | belongsTo | A permit belongs to one eatery. |
+| Eatery → Feature | belongsToMany | An eatery can have several features. |
+| Feature → Eatery | belongsToMany | The same feature can apply to many eateries. |
+| District → Review | hasManyThrough | A district can access reviews through its eateries. |
+
+The many-to-many relationship uses the
+`eatery_feature` pivot table.
+
+## Seeded Record Counts
+
+| Record | Expected Count |
+|---|---:|
+| Districts | 6 |
+| Features | 6 |
+| Users | 12 |
+| Eateries | 15 |
+| Closed Eateries | 3 |
+| Permits | 15 |
+
+## Routes
+
+The following is a summary of the project routes.
+The actual output of
+`php artisan route:list --except-vendor`
+must be inserted below before submission.
+
+| Method | URI | Name |
+|---|---|---|
+| GET | / | home |
+| GET | eateries | eateries.index |
+| GET | eateries/create | eateries.create |
+| POST | eateries | eateries.store |
+| GET | eateries/{eatery} | eateries.show |
+| GET | eateries/{eatery}/edit | eateries.edit |
+| PUT/PATCH | eateries/{eatery} | eateries.update |
+| DELETE | eateries/{eatery} | eateries.destroy |
+| POST | eateries/{eatery}/reviews | eateries.reviews.store |
+| DELETE | reviews/{review} | reviews.destroy |
+| GET | districts | districts.index |
+| GET | districts/{district} | districts.show |
+| GET | reviewers/{user} | reviewers.show |
+
+### Actual Route List Output
+
+```text
+  GET|HEAD        / ................................................................................................................. home › HomeController
+  GET|HEAD        districts .................................................................................... districts.index › DistrictController@index
+  GET|HEAD        districts/{district} ........................................................................... districts.show › DistrictController@show
+  GET|HEAD        eateries ........................................................................................ eateries.index › EateryController@index
+  POST            eateries ........................................................................................ eateries.store › EateryController@store
+  GET|HEAD        eateries/create ............................................................................... eateries.create › EateryController@create
+  GET|HEAD        eateries/{eatery} ................................................................................. eateries.show › EateryController@show
+  PUT|PATCH       eateries/{eatery} ............................................................................. eateries.update › EateryController@update
+  DELETE          eateries/{eatery} ........................................................................... eateries.destroy › EateryController@destroy
+  GET|HEAD        eateries/{eatery}/edit ............................................................................ eateries.edit › EateryController@edit
+  POST            eateries/{eatery}/reviews ............................................................... eateries.reviews.store › ReviewController@store
+  GET|HEAD        reviewers/{user} ............................................................................... reviewers.show › ReviewerController@show
+  DELETE          reviews/{review} ............................................................................. reviews.destroy › ReviewController@destroy
+```
+
+## Screenshots
+
+### Eatery Listing
+
+![Eatery Listing](screenshots/eatery-list.png)
+
+### Eatery Details and Reviews
+
+![Eatery Details](screenshots/eatery-details.png)
+
+### Form Validation
+
+![Form Validation](screenshots/form-validation.png)
+
+## Testing
+
+The project should be tested with:
+
+```bash
+php artisan migrate:fresh --seed
+php artisan route:list --except-vendor
+npm run build
+php artisan test
+```
+
+Verify that all required pages, CRUD operations,
+review restrictions, and validation messages work.
+
+## Author
+
+Mica Julianna P. Dimatulac
+```

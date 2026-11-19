@@ -77,12 +77,13 @@ class EateryController extends Controller
     }
 
     // Save a new eatery using validated form data.
+    
     public function store(StoreEateryRequest $request)
     {
         $data = $request->validated();
 
-        DB::transaction(function () use ($data) {
-            // Create a slug from the eatery name.
+        // Save the eatery, permit, and features together.
+        $eatery = DB::transaction(function () use ($data) {
             $eatery = Eatery::create([
                 'district_id' => $data['district_id'],
                 'name' => $data['name'],
@@ -93,20 +94,21 @@ class EateryController extends Controller
                 'is_open' => $data['is_open'] ?? false,
             ]);
 
-            // Create its permit through the relationship.
             $eatery->permit()->create([
                 'permit_no' => $data['permit_no'],
                 'expires_on' => $data['expires_on'],
             ]);
 
-            // Save the selected features.
             $eatery->features()->sync($data['features']);
+
+            return $eatery;
         });
 
         return redirect()
-            ->route('eateries.index')
+            ->route('eateries.show', $eatery)
             ->with('success', 'Eatery added.');
     }
+
 
     // Display one eatery and its related records.
     public function show(Eatery $eatery)

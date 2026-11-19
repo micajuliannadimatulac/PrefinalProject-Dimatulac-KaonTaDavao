@@ -15,20 +15,18 @@
         </p>
     </div>
 
-    <a
-        href="{{ route('eateries.create') }}"
-        class="rounded-lg bg-brand-brown px-5 py-3 font-semibold text-white"
-    >
+    <a href="{{ route('eateries.create') }}"
+       class="rounded-lg bg-brand-brown px-5 py-3 font-semibold text-white">
         Add Eatery
     </a>
 </div>
 
-{{-- Filters use GET so they remain in the URL. --}}
-<form
-    action="{{ route('eateries.index') }}"
-    method="GET"
-    class="mb-8 grid gap-4 rounded-xl bg-white p-5 shadow-sm md:grid-cols-4"
->
+{{-- Search and filter form --}}
+<form action="{{ route('eateries.index') }}"
+      method="GET"
+      class="mb-8 grid gap-4 rounded-xl bg-white p-5 shadow-sm md:grid-cols-4">
+
+    {{-- Search --}}
     <div>
         <label for="q" class="block text-sm font-semibold">
             Search
@@ -44,6 +42,7 @@
         >
     </div>
 
+    {{-- District filter --}}
     <div>
         <label for="district" class="block text-sm font-semibold">
             District
@@ -56,7 +55,7 @@
         >
             <option value="">All districts</option>
 
-            @foreach ($districts as $district)
+            @foreach($districts as $district)
                 <option
                     value="{{ $district->id }}"
                     @selected(request('district') == $district->id)
@@ -67,6 +66,7 @@
         </select>
     </div>
 
+    {{-- Feature filter --}}
     <div>
         <label for="feature" class="block text-sm font-semibold">
             Feature
@@ -79,7 +79,7 @@
         >
             <option value="">All features</option>
 
-            @foreach ($features as $feature)
+            @foreach($features as $feature)
                 <option
                     value="{{ $feature->name }}"
                     @selected(request('feature') === $feature->name)
@@ -90,6 +90,7 @@
         </select>
     </div>
 
+    {{-- Filter and reset buttons --}}
     <div class="flex flex-wrap items-end gap-2">
         <button
             type="submit"
@@ -98,29 +99,35 @@
             Filter
         </button>
 
-        <a
-            href="{{ route('eateries.index') }}"
-            class="rounded-lg border border-gray-300 px-4 py-2"
-        >
+        <a href="{{ route('eateries.index') }}"
+           class="rounded-lg border border-gray-300 px-4 py-2">
             Reset
         </a>
     </div>
 </form>
 
-@if ($eateries->isEmpty())
+{{-- Eatery cards --}}
+@if($eateries->isEmpty())
+
     <p class="rounded-xl bg-white p-6 text-center text-gray-600">
         No eateries match your filters.
     </p>
+
 @else
+
     <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        @foreach ($eateries as $eatery)
+
+        @foreach($eateries as $eatery)
             <x-eatery-card :eatery="$eatery" />
         @endforeach
+
     </div>
 
+    {{-- Pagination --}}
     <div class="mt-8">
         {{ $eateries->links() }}
     </div>
+
 @endif
 
 @endsection

@@ -3,7 +3,7 @@
 
         <a href="{{ route('home') }}"
            class="text-xl font-bold">
-            Kaon Ta! Davao
+            Kaon Ta! Davao – Dimatulac's Food Guide
         </a>
 
         <div class="flex flex-wrap gap-4 text-sm font-medium">

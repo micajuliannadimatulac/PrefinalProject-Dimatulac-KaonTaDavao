@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Eatery | Kaon Ta! Davao')
+@section('title', 'Edit Eatery | Kaon Ta! Davao – Dimatulac's Food Guide')
 
 @section('content')
 

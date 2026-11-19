@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name . ' | Kaon Ta! Davao')
+@section('title', $user->name . ' | Kaon Ta! Davao – Dimatulac's Food Guide')
 
 @section('content')
 

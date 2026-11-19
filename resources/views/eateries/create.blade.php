@@ -5,14 +5,19 @@
 @section('content')
 
 <div class="mx-auto max-w-3xl">
-    <h1 class="mb-2 text-3xl font-bold text-brand-brown">
-        Add a New Eatery
-    </h1>
 
-    <p class="mb-6 text-gray-600">
-        Share another Davao food spot with the community.
-    </p>
+    {{-- Page heading --}}
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-brand-brown">
+            Add a New Eatery
+        </h1>
 
+        <p class="mt-2 text-gray-600">
+            Share another Davao food spot with the community.
+        </p>
+    </div>
+
+    {{-- Create eatery form --}}
     <form
         action="{{ route('eateries.store') }}"
         method="POST"
@@ -20,8 +25,11 @@
     >
         @csrf
 
+        {{-- Shared form fields, validation errors, and buttons --}}
         @include('eateries._form')
+
     </form>
+
 </div>
 
 @endsection
