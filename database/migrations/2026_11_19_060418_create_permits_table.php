@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('permits', function (Blueprint $table) {
+            $table->id();
+
+            // Unique FK ensures one permit per eatery.
+            $table->foreignId('eatery_id')
+                ->unique()
+                ->constrained()
+                ->cascadeOnDelete();
+
+            // Permit numbers cannot repeat.
+            $table->string('permit_no')->unique();
+
+            $table->date('expires_on');
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('permits');
+    }
+};
